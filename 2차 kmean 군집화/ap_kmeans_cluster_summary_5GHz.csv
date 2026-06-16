@@ -1,0 +1,4 @@
+﻿cluster,mean_overlap,mean_strong_overlap,mean_same_channel,mean_self_rssi,count,cluster_type
+0,0.9230769230769231,0.0,0.0,-31.593055555555555,13,균형형
+1,1.0,0.0,1.0,-31.0,1,중복 과밀형
+2,0.0,0.0,0.0,-44.4,1,희소 커버리지형
