@@ -1,0 +1,81 @@
+결과 파일 설명
+
+이 txt 파일은 생성된 CSV 파일과 사진 파일이 무엇을 의미하는지 설명하기 위한 파일이다.
+운동장(프3층)은 실내 Wi-Fi AP 분석 대상이 아니므로 결과 계산에서 제외하였다.
+
+[CSV 파일 설명]
+
+1. student_period_location_long.csv
+- 학생 한 명이 특정 요일·교시에 어느 교실에 있는지를 길게 정리한 원본 분석표이다.
+- 예를 들어 한 학생이 월_1교시에 3-10에 있으면, 그 학생이 월_1교시에 3-10 교실의 Wi-Fi를 사용할 가능성이 있다고 본다.
+
+2. excluded_no_wifi_locations.csv
+- Wi-Fi 혼잡도 분석에서 제외한 장소 목록이다.
+- 운동장(프3층)은 실내 Wi-Fi AP가 없으므로 제외하였다.
+
+3. classroom_period_load.csv
+- 각 교시마다 각 교실에 몇 명이 있는지 계산한 표이다.
+- 이 파일이 교시별 혼잡도 분석의 핵심 자료이다.
+- estimated_students 값이 클수록 해당 교시의 해당 교실에서 Wi-Fi 접속자가 많을 가능성이 크다.
+
+4. classroom_congestion_features.csv
+- 교실별 혼잡도 계산에 사용한 특징값을 정리한 표이다.
+- mean_students는 평균 학생 수, max_students는 가장 많이 몰린 순간의 학생 수를 의미한다.
+- congestion_score는 평균 학생 수, 최대 학생 수, 혼잡 교시 비율 등을 종합한 점수이다.
+
+5. classroom_kmeans_result.csv
+- K-means 알고리즘으로 각 교실을 저부하 안정형, 중간 부하형, 혼잡 병목형으로 분류한 결과이다.
+- 혼잡 병목형은 특정 시간대에 학생이 많이 몰려 Wi-Fi 지연이 발생할 가능성이 큰 교실이다.
+
+6. classroom_kmeans_cluster_summary.csv
+- K-means로 나뉜 각 군집의 평균 특징을 요약한 표이다.
+- 각 군집이 왜 저부하 안정형, 중간 부하형, 혼잡 병목형으로 해석되는지 확인할 수 있다.
+
+7. classroom_wifi_recommendations.csv
+- 교실별 개선 우선순위와 추천 조치를 정리한 표이다.
+- 우선순위가 상인 교실은 AP 추가 설치, 채널 재배치, 부하 분산 등을 먼저 검토할 필요가 있다.
+
+8. period_top_classrooms_summary.csv
+- 각 교시마다 학생 수가 많은 상위 교실을 정리한 표이다.
+- 어느 요일, 몇 교시에 특정 교실로 학생이 몰리는지 확인할 수 있다.
+
+9. global_period_classroom_peak_top20.csv
+- 전체 시간표 중 가장 학생 수가 많이 몰린 교시-교실 조합 상위 20개를 정리한 표이다.
+- Wi-Fi가 느려질 가능성이 큰 순간을 찾는 데 사용한다.
+
+10. course_count_raw_with_classroom.csv
+- 수강인원 파일에 있던 수업 정보를 교실 이름과 연결한 표이다.
+- 수업별로 어느 교실에서 몇 명이 수업을 듣는지 확인할 수 있다.
+
+11. course_count_classroom_summary.csv
+- 수강인원 파일을 교실별로 요약한 표이다.
+- 교실별 개설 수업 수, 평균 수강 인원, 최대 수강 인원을 볼 수 있다.
+
+[사진 파일 설명]
+
+1. classroom_period_load_heatmap.png
+- 교시별·교실별 학생 밀집도를 색으로 나타낸 그림이다.
+- 색이 진할수록 해당 교시에 해당 교실에 학생이 많다는 뜻이다.
+- 이 그림은 Wi-Fi 혼잡이 언제, 어느 교실에서 발생할 가능성이 큰지 찾는 데 가장 중요하다.
+
+2. classroom_congestion_score_bar.png
+- 교실별 종합 Wi-Fi 예상 혼잡도 점수를 막대그래프로 나타낸 그림이다.
+- 특정 교시 하나가 아니라 전체 시간표를 종합해서 어느 교실이 전체적으로 혼잡한지 보여준다.
+
+3. classroom_kmeans_scatter.png
+- K-means 알고리즘이 교실을 어떻게 분류했는지 보여주는 산점도이다.
+- x축은 평균 학생 수, y축은 최대 학생 수이다.
+- 위쪽에 있는 교실일수록 특정 시간대에 학생이 많이 몰리는 교실이다.
+
+4. kmeans_elbow_graph.png
+- K-means에서 군집 수 K를 정할 때 참고하는 그래프이다.
+- 그래프가 갑자기 완만해지는 지점이 적절한 K 후보가 된다.
+
+5. global_period_classroom_peak_top20.png
+- 전체 시간표에서 학생 수가 가장 많이 몰린 교시-교실 조합 상위 20개를 보여주는 그래프이다.
+- 이 그림은 실제로 어느 시간에 어느 교실의 Wi-Fi 사용량이 가장 높을지 설명할 때 사용한다.
+
+6. period_top_classrooms 폴더 안의 사진들
+- 각 교시마다 학생 수가 많은 교실 TOP 10을 따로 그린 사진이다.
+- 예를 들어 월_1교시_top_classrooms.png는 월요일 1교시에 어느 교실이 가장 혼잡한지 보여준다.
+- 교시별 원인 분석을 할 때 사용한다.
